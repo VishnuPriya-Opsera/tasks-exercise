@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h2>two way binding</h2>
+    </head>
+    <body>
+       
+        <input type ="text" id="myinput" oninput="display()">
+        <input type ="text" id= "inputcopy" oninput="change()">
+
+        
+        <script>
+            function display() {
+                
+                let text= document.getElementById("myinput").value;
+                document.getElementById("inputcopy").value = text;
+                
+            }
+            function change() {
+                let text1= document.getElementById("inputcopy").value;
+                document.getElementById("myinput").value = text1;
+
+            }
+        </script>
+
+    </body>
+</html>

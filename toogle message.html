@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<body>
+<h1> text ON and OFF </h1>
+<button onclick="func()">Click Me!</button>
+<p id="demo"></p>
+<script>
+    let show = true;
+function func() {
+    var t = document.getElementById("demo");
+    
+    if(show) {
+        t.innerHTML="Hii";
+    } else {
+        t.innerHTML=" ";
+    }
+    show = !show;
+}
+</script>
+</body>
+</html>
