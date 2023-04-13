@@ -11,7 +11,9 @@ function bubbleSort(arr) {
         isSwapped = false;
   
         for (j = 0; j < len; j++) {
+          //comparing the consecutive numbers
             if (arr[j] > arr[j + 1]) {
+              // swapping of consecutive numbers
                 let temp = arr[j]
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
