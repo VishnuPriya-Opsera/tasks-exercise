@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <h2>moving of element in coordinates</h2>
+</head>
+
+<body>
+    <li>1. give x,y coordinates</li>
+    <li>2.direction of movement</li>
+
+    <input type="text" id="input1">
+    <input type="text" id="input2" oninput="createPlane()">
+    <p id="demo"></p>
+    <button onclick="move(this.id)" id="right">right</button>
+    <button onclick="move(this.id)" id="left">left</button>
+    <button onclick="move(this.id)" id="up">up</button>
+    <button onclick="move(this.id)" id="down">down</button>
+    <div id="demo1"></div>
+    
+    
+   
+    <p id="demo2"></p>
+    <script>
+        let arr = [];
+        function createPlane() {
+            let x = document.getElementById("input1").value;
+            let y = document.getElementById("input2").value;
+
+            for (let i = 0; i < y; i++) {
+                arr[i] = [];
+                for (let j = 0; j < x; j++) {
+                    arr[i][j] = 0;
+
+                }
+                // document.getElementById("demo").appendchild(arr); 
+            }
+            arr[y - 1][0] = 1;
+
+            const dFrag = document.createDocumentFragment();
+            for (let x in arr) {
+                const li = document.createElement('p');
+                li.textContent = arr[x];
+                dFrag.appendChild(li);
+            }
+
+            // Add fragment to a list: 
+            document.getElementById("demo").appendChild(dFrag);
+        }
+
+        document.onkeydown = function(e){
+                    key = window.event;
+                    action = key.key;
+                    console.log("key is : "+action );
+                    move()
+                   }
+        function move(id) {
+
+
+            const row = arr.findIndex(row => row.includes(1));
+            //console.log(arr, row);
+            //document.getElementById("demo1").innerHTML = row;
+            const col = arr[row].indexOf(1);
+            //document.getElementById("demo2").innerHTML = col;
+        
+            if ((id == "right") || (action== 'ArrowRight')) {
+                if (col == ((arr[0].length) - 1)) {
+                    arr[row][0] = arr[row][col];
+                }
+                else {
+                    arr[row][col + 1] = arr[row][col]
+
+                }
+                 
+            }
+            else if ((id == 'left') || (action== 'ArrowLeft')) {
+                if (col == 0) {
+                    arr[row][(arr[0].length) - 1] = arr[row][col];
+
+                }
+                else {
+                    arr[row][col - 1] = arr[row][col]
+
+                }
+
+            }
+            else if ((id == 'up') || (action== "ArrowUp")) {
+                if (row == 0) {
+                    arr[(arr.length) - 1][col] = arr[row][col];
+                }
+                else {
+                    arr[row - 1][col] = arr[row][col];
+
+                }
+
+            }
+
+            else if ((id == 'down') || (action== 'ArrowDown')) {
+                if (row == (arr.length) - 1) {
+                    arr[0][col] = arr[row][col];
+                }
+                else {
+                    arr[row + 1][col] = arr[row][col];
+                }
+
+            }
+
+            arr[row][col] = 0;
+                const dFrag = document.createDocumentFragment();
+                for (let x in arr) {
+                    const lis = document.createElement('p');
+                    lis.textContent = arr[x];
+                    dFrag.append(lis);
+                }
+            document.getElementById("demo").replaceChildren(dFrag);
+                
+        
+        }
+
+    </script>
+</body>
+
+</html>
